@@ -14,7 +14,7 @@ public class CadastroCompleto {
 	
 	public FirefoxDriver driver;
 	
-	
+	/*--------------------------------------------------------Página Finalizada------------------------------------------------------*/
 	
 	@Before
 	public void Inicio(){
