@@ -25,7 +25,7 @@ public class CadastroCompleto {
 	
 	@Test
 	//InterruptedException é uma extensão para a execucao do metodo implicitlyWait
-	public void Teste() throws InterruptedException{
+	public void cadastroCompleto() throws InterruptedException{
 						
 		//variaveis de controle para o while com toda a instrução, para que fique se repetindo diversas vezes
 		int i = 0;
@@ -83,12 +83,17 @@ public class CadastroCompleto {
 		Select selTempoAtuacao = new Select(driver.findElement(By.id("cadastro-atuacao")));
 		selTempoAtuacao.selectByIndex(2);
 	
+		driver.findElement(By.id("cadastro-telefone-ddd")).click();
 		driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("047");
+		driver.findElement(By.id("cadastro-telefone")).click();
 		driver.findElement(By.id("cadastro-telefone")).sendKeys("988091642");
+		driver.findElement(By.id("cadastro-celular-ddd")).click();
 		driver.findElement(By.id("cadastro-celular-ddd")).sendKeys("47");
+		driver.findElement(By.id("cadastro-celular")).click();
 		driver.findElement(By.id("cadastro-celular")).sendKeys("987654321");
 		
 		/*------------------ Dados residenciais-----------------------*/
+		driver.findElement(By.id("cadastro-cep")).click();
 		driver.findElement(By.id("cadastro-cep")).sendKeys("89235735222");
 		driver.findElement(By.id("cadastro-endereco")).sendKeys("Rua cidade de Maracajá");
 		driver.findElement(By.id("cadastro-numero")).sendKeys("155");
@@ -112,7 +117,7 @@ public class CadastroCompleto {
 		selCidade.selectByValue("420910");
 		
 		driver.findElement(By.xpath("//*[@id='mundo_tigre_mtg_cnpj_emp']")).click();
-		driver.findElement(By.xpath("//*[@value='312945619']")).click();
+		driver.findElement(By.xpath("//*[@value='-1']")).click();
 		
 		Select selTrabalhaEmpresa = new Select(driver.findElement(By.id("cadastro-mtg_trabalha_empresa")));
 		selTrabalhaEmpresa.selectByIndex(1);
