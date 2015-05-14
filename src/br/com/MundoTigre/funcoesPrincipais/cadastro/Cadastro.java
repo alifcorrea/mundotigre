@@ -18,9 +18,7 @@ public class Cadastro {
 	public void Inicio(){
 		
 		//Abre o navegador com o JS desativado
-		FirefoxProfile profileT = new FirefoxProfile();
-		profileT.setPreference("javascript.enabled", false);
-		driver = new FirefoxDriver(profileT);
+		
 	}
 
 
