@@ -53,28 +53,33 @@ public class CadastroCompleto {
 		
 		funcoes.abrirLink(driver, link);	
 		funcoes.AguardarCarregamento(driver);		 
-		funcoes.fecharBanner(driver);
-		
-
-		driver.findElement(By.xpath("//*[@href='/cadastro/new']")).click();
-		
+		funcoesCadastro.fecharBanner(driver);
+		funcoesCadastro.botaoCadastreSe(driver);		
 		funcoes.AguardarCarregamento(driver);
 		
-		driver.findElement(By.id("login-cpf")).click();
-		driver.findElement(By.id("login-cpf")).sendKeys("091215139"+cpfFim);
-		driver.findElement(By.id("login-senha")).sendKeys("Teste"+ i +"@teste.com.br");
+		funcoes.clicarCampoPorID(driver,"login-cpf");
+		funcoes.setarValorPorID(driver, "login-cpf", "091215139"+ cpfFim);
 		
-		driver.findElement(By.xpath("//*[@value='Cadastrar']")).click();
+		funcoes.clicarCampoPorID(driver, "login-senha");
+		funcoes.setarValorPorID(driver, "login-senha", "Teste"+ i +"@teste.com.br");
 		
+		funcoesCadastro.botaoCadastro(driver);
 		funcoes.AguardarCarregamento(driver);
 		
 		driver.findElement(By.name("mundo_tigre[mtg_nome]")).sendKeys("Teste"+i);
+		funcoes.clicarCampoPorID(driver,"cadastro-nascimento");
 		driver.findElement(By.id("cadastro-nascimento")).sendKeys("221119"+fimNasc);
 		
+		//Campo Sexo
+		String idCampo = "cadastro-sexo";
+		String valorOption = "M";		
+		funcoes.campoSelect(driver, idCampo, valorOption);
+		
+		
 		//cria um objeto selSexo do tipo select para selecionar um sexo
-		Select selSexo = new Select(driver.findElement(By.id("cadastro-sexo"))); 
+		//Select selSexo = new Select(driver.findElement(By.id("cadastro-sexo"))); 
 		//através do objeto selProf seleciona a opção 1 (Masculino)
-		selSexo.selectByIndex(1);
+		//selSexo.selectByIndex(1);
 		
 		//cria um objeto selprof do tipo select para selecionar uma profissão
 		Select selProf = new Select(driver.findElement(By.id("mundo_tigre_mtg_id_prs")));
