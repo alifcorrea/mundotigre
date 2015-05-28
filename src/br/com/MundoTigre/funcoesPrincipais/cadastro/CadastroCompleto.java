@@ -3,192 +3,154 @@ package br.com.MundoTigre.funcoesPrincipais.cadastro;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.support.ui.Select;
 
+import br.com.MundoTigre.objetos.Usuario;
 import br.com.MundoTigre.scripts.FuncoesCadastro;
-import br.com.MundoTigre.scripts.FuncoesGerais;
+import br.com.MundoTigre.scripts.FuncoesFirefox;
 
 
 public class CadastroCompleto {
 	
 	public FirefoxDriver driver;
 	
-	/*--------------------------------------------------------Página Finalizada------------------------------------------------------*/
-	
 	@Before
 	public void Inicio(){
-		
 		driver = new FirefoxDriver();
-	}
-	
+	}	
 	
 	@Test
-	//InterruptedException é uma extensão para a execucao do metodo implicitlyWait
+	//InterruptedException = Extensão para a execução do metodo implicitlyWait
 	public void cadastroCompleto() throws InterruptedException{
 		
+		int i = 1;
+		int max = 6;		
+		int UltimosDigitos = 56;	
 		
-		FuncoesGerais funcoes =  new FuncoesGerais();
+		FuncoesFirefox funcoes =  new FuncoesFirefox();
 		FuncoesCadastro funcoesCadastro = new FuncoesCadastro();		
+		Usuario usuario = new Usuario();
 		
+		usuario.setCpf("435678956"+UltimosDigitos);
+		usuario.setEmail("Testes"+ i +"@teste.com.br");
+		usuario.setNome("Teste"+i);
+		usuario.setDataNascimento("22/11/19"+UltimosDigitos);
+		usuario.setSexo("M");
+		usuario.setProfissaoAtividade("61");
+		usuario.setTempoAtuacao(2);
+		usuario.setDDD("047");
+		usuario.setTelefone("988091642");
+		usuario.setCelular("987654321");
+		usuario.setCep("89235735222");
+		usuario.setEndereco("Rua cidade de Maracajá");
+		usuario.setNumero("155");
+		usuario.setComplemento("Próximo ao mercado Renascer");
+		usuario.setEstado(24);
+		usuario.setCidade("420910");
+		usuario.setBairro("Parque Guarani");
+		usuario.setTrabalhaEmpresa(1);
+		usuario.setTimeCoracao("100");
+		usuario.setConfirmaEmail("Testes"+ i +"@teste.com.br");
+		usuario.setSenha("alif");
+		usuario.setConfirmaSenha("alif");	
 		
-		//variaveis de controle para o while com toda a instrução, para que fique se repetindo diversas vezes
-		int i = 0;
-		int max = 2;
-		
-		//variaveis de controle dos campos 
-		int cpfFim = 67;	
-		int fimNasc = 67;
+	
+	try{	
 		
 		while(i<max){
-			
-			//Desabilitar JS	
-			FirefoxProfile p = new FirefoxProfile();
-			p.setPreference("javascript.enabled", false);
+		funcoes.abrirLink(driver,"http://www.mundotigre.com.br/");		
+		funcoes.AguardarCarregamento(driver);	
 		
-	
-		String link = "http://www.mundotigre.com.br/";
+		funcoesCadastro.fecharBanner(driver);		
+		funcoesCadastro.botaoCadastreSe(driver);
 		
-		funcoes.abrirLink(driver, link);	
-		funcoes.AguardarCarregamento(driver);		 
-		funcoesCadastro.fecharBanner(driver);
-		funcoesCadastro.botaoCadastreSe(driver);		
 		funcoes.AguardarCarregamento(driver);
 		
-		funcoes.clicarCampoPorID(driver,"login-cpf");
-		funcoes.setarValorPorID(driver, "login-cpf", "091215139"+ cpfFim);
-		
-		funcoes.clicarCampoPorID(driver, "login-senha");
-		funcoes.setarValorPorID(driver, "login-senha", "Teste"+ i +"@teste.com.br");
-		
+		funcoes.clicarESetarPorID(driver, "login-cpf", usuario.getCpf());
+		funcoes.clicarESetarPorID(driver, "login-senha", usuario.getEmail());		
 		funcoesCadastro.botaoCadastro(driver);
-		funcoes.AguardarCarregamento(driver);
 		
-		driver.findElement(By.name("mundo_tigre[mtg_nome]")).sendKeys("Teste"+i);
-		funcoes.clicarCampoPorID(driver,"cadastro-nascimento");
-		driver.findElement(By.id("cadastro-nascimento")).sendKeys("221119"+fimNasc);
-		
-		//Campo Sexo
-		String idCampo = "cadastro-sexo";
-		String valorOption = "M";		
-		funcoes.campoSelect(driver, idCampo, valorOption);
-		
-		
-		//cria um objeto selSexo do tipo select para selecionar um sexo
-		//Select selSexo = new Select(driver.findElement(By.id("cadastro-sexo"))); 
-		//através do objeto selProf seleciona a opção 1 (Masculino)
-		//selSexo.selectByIndex(1);
-		
-		//cria um objeto selprof do tipo select para selecionar uma profissão
-		Select selProf = new Select(driver.findElement(By.id("mundo_tigre_mtg_id_prs")));
-		//seleciona a opção da oitava posição
-		selProf.selectByIndex(8);
+		funcoes.AguardarCarregamento(driver);		
+
+		funcoes.clicarESetarPorNome(driver, "mundo_tigre[mtg_nome]", usuario.getNome());		
+		funcoes.clicarESetarPorID(driver, "cadastro-nascimento", usuario.getDataNascimento());		
+		funcoes.campoSelectValuePorID(driver, "cadastro-sexo", usuario.getSexo());		
+		funcoes.campoSelectValuePorID(driver,"mundo_tigre_mtg_id_prs", usuario.getProfissaoAtividade());
 		
 		funcoes.AguardarCarregamento(driver);
 		
-		Select profDetalhe = new Select(driver.findElement(By.id("mundo_tigre_mtg_id_prs_det")));
-		profDetalhe.selectByIndex(2);
+		funcoes.campoSelectIndexPorID(driver, "cadastro-atuacao", usuario.getTempoAtuacao());
 		
-		Select selTempoAtuacao = new Select(driver.findElement(By.id("cadastro-atuacao")));
-		selTempoAtuacao.selectByIndex(2);
+		
+		/*--------------------------Telefone--------------------------*/		
+		funcoes.clicarESetarPorID(driver, "cadastro-telefone-ddd", usuario.getDDD());
+		funcoes.clicarESetarPorID(driver, "cadastro-telefone", usuario.getTelefone());
+		funcoes.clicarESetarPorID(driver, "cadastro-celular-ddd", usuario.getDDD());
+		funcoes.clicarESetarPorID(driver, "cadastro-celular", usuario.getCelular());	
+		
+		
+		/*------------------ Dados residenciais -----------------------*/	
+		funcoes.clicarESetarPorID(driver, "cadastro-cep", usuario.getCep());	
+		funcoes.clicarESetarPorID(driver, "cadastro-endereco", usuario.getEndereco());
+		funcoes.clicarESetarPorID(driver, "cadastro-numero", usuario.getNumero());	
+		funcoes.clicarESetarPorID(driver, "cadastro-complemento", usuario.getComplemento());			
+		funcoes.campoSelectIndexPorID(driver, "mundo_tigre_mtg_id_est", usuario.getEstado());		
+		funcoes.campoSelectValuePorID(driver, "mundo_tigre_mtg_cidade", usuario.getCidade());
+		funcoes.clicarESetarPorID(driver, "cadastro-bairro", usuario.getBairro());
+		
+		
+		
+		/*--------------Empresa em que trabalha ou costuma comprar produtos Tigre------------*/
+		funcoes.campoSelectIndexPorID(driver, "mundo_tigre_mtg_id_est_emp", usuario.getEstado());
+		funcoes.campoSelectValuePorID(driver, "mundo_tigre_mtg_cidade_emp", usuario.getCidade());
+		funcoes.clicarCampoPorXpath  (driver, "//*[@id='mundo_tigre_mtg_cnpj_emp']");
+		funcoes.clicarCampoPorXpath  (driver, "//*[@value='-1']");
+		funcoes.campoSelectIndexPorID(driver, "cadastro-mtg_trabalha_empresa", usuario.getTrabalhaEmpresa());
+			/*Checkbox Atividade Fisica Preferida*/
+			funcoes.MarcarCheckboxPorCssSelector(driver, "input[id='mundo_tigre_atividade_fisica_list_5']");
+			funcoes.MarcarCheckboxPorCssSelector(driver, "input[id='mundo_tigre_atividade_fisica_list_3']");
+			funcoes.MarcarCheckboxPorCssSelector(driver, "input[id='mundo_tigre_atividade_fisica_list_4']");
+			funcoes.MarcarCheckboxPorCssSelector(driver, "input[id='mundo_tigre_atividade_fisica_list_6']");
+			funcoes.MarcarCheckboxPorCssSelector(driver, "input[id='mundo_tigre_atividade_fisica_list_1']");
+			funcoes.MarcarCheckboxPorCssSelector(driver, "input[id='mundo_tigre_atividade_fisica_list_8']");
+			funcoes.MarcarCheckboxPorCssSelector(driver, "input[id='mundo_tigre_atividade_fisica_list_13']");
+			funcoes.MarcarCheckboxPorID(driver, "mundo_tigre_atividade_fisica_list_12");
+			funcoes.MarcarCheckboxPorID(driver, "mundo_tigre_atividade_fisica_list_7");
+			funcoes.MarcarCheckboxPorID(driver, "mundo_tigre_atividade_fisica_list_2");
+			/*Fim Atividade Fisica Preferida-----*/
+		funcoes.campoSelectValuePorID(driver, "cadastro-mtg_time_coracao", usuario.getTimeCoracao());    
+		
+		
+		
+		/*--------------------------Informações complementares---------------------*/
+		funcoes.clicarCampoPorID(driver, "cadastro-novidade");
+		funcoes.clicarCampoPorID(driver, "cadastro-sms");   
+			funcoes.MarcarCheckboxPorID(driver, "mundo_tigre_area_interesse_list_1");
+			funcoes.MarcarCheckboxPorID(driver, "mundo_tigre_area_interesse_list_14");
+			funcoes.MarcarCheckboxPorID(driver, "mundo_tigre_area_interesse_list_2");  
+			funcoes.MarcarCheckboxPorID(driver, "mundo_tigre_area_interesse_list_3");
+		funcoes.clicarESetarPorID(driver, "email-confirme", usuario.getConfirmaEmail());
+		funcoes.clicarESetarPorID(driver, "cadastro-senha", usuario.getSenha());
+		funcoes.clicarESetarPorID(driver, "cadastro-senha-confirme", usuario.getConfirmaSenha());	
+		funcoes.clicarCampoPorCssSelector(driver, ".submit");		
+		
+		/*--------------------------------------------Fim Cadastro----------------------------------------------*/
 	
-		driver.findElement(By.id("cadastro-telefone-ddd")).click();
-		driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("047");
-		driver.findElement(By.id("cadastro-telefone")).click();
-		driver.findElement(By.id("cadastro-telefone")).sendKeys("988091642");
-		driver.findElement(By.id("cadastro-celular-ddd")).click();
-		driver.findElement(By.id("cadastro-celular-ddd")).sendKeys("47");
-		driver.findElement(By.id("cadastro-celular")).click();
-		driver.findElement(By.id("cadastro-celular")).sendKeys("987654321");
-		
-		/*------------------ Dados residenciais-----------------------*/
-		driver.findElement(By.id("cadastro-cep")).click();
-		driver.findElement(By.id("cadastro-cep")).sendKeys("89235735222");
-		driver.findElement(By.id("cadastro-endereco")).sendKeys("Rua cidade de Maracajá");
-		driver.findElement(By.id("cadastro-numero")).sendKeys("155");
-		driver.findElement(By.id("cadastro-complemento")).sendKeys("Próximo ao mercado Renascer");
-		
-		Select estado = new Select(driver.findElement(By.id("mundo_tigre_mtg_id_est")));
-		estado.selectByIndex(24);
-		
-		Select cidade = new Select(driver.findElement(By.id("mundo_tigre_mtg_cidade")));
-		cidade.selectByValue("420910");
-			
-		driver.findElement(By.id("cadastro-bairro")).sendKeys("Parque Guarani");
-		
-		/*---------------Empresa em que trabalha ou costuma comprar produtos Tigre------------*/
-		Select selEstado = new Select(driver.findElement(By.id("mundo_tigre_mtg_id_est_emp")));
-		selEstado.selectByIndex(24);
-		
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
-		Select selCidade = new Select(driver.findElement(By.id("mundo_tigre_mtg_cidade_emp")));
-		selCidade.selectByValue("420910");
-		
-		driver.findElement(By.xpath("//*[@id='mundo_tigre_mtg_cnpj_emp']")).click();
-		driver.findElement(By.xpath("//*[@value='-1']")).click();
-		
-		Select selTrabalhaEmpresa = new Select(driver.findElement(By.id("cadastro-mtg_trabalha_empresa")));
-		selTrabalhaEmpresa.selectByIndex(1);
-		
-		
-		funcoesCadastro.AtividadeFisicaEsportiva(driver);
-		
-		    
-		   Select timeCoracao = new Select(driver.findElement(By.id("cadastro-mtg_time_coracao")));
-		   timeCoracao.selectByValue("100");
-		   
-		   driver.findElement(By.id("cadastro-novidade")).click();
-		   driver.findElement(By.id("cadastro-sms")).click();
-		   
-		   WebElement receberInf1;
-		   WebElement receberInf2;
-		   WebElement receberInf3;
-		   WebElement receberInf4;
-		   
-		   receberInf1 = driver.findElement(By.id("mundo_tigre_area_interesse_list_1"));
-		   receberInf2 = driver.findElement(By.id("mundo_tigre_area_interesse_list_14"));
-		   receberInf3 = driver.findElement(By.id("mundo_tigre_area_interesse_list_2"));
-		   receberInf4 = driver.findElement(By.id("mundo_tigre_area_interesse_list_3"));
-		   
-		   
-		   if(!receberInf1.isSelected()){
-			   receberInf1.click();
-		   }
-		   
-		   if(!receberInf2.isSelected()){
-			   receberInf2.click();
-		   }
-		   
-		   if(!receberInf3.isSelected()){
-			   receberInf3.click();
-		   }
-		   
-		   if(!receberInf4.isSelected()){
-			   receberInf4.click();
-		   }
-		   
-		   driver.findElement(By.id("email-confirme")).sendKeys("Teste"+ i +"@teste.com.br");
-		   driver.findElement(By.id("cadastro-senha")).sendKeys("alif");
-		   driver.findElement(By.id("cadastro-senha-confirme")).sendKeys("alif");
-		   driver.findElement(By.cssSelector(".submit")).click();
-		   
-		   //Acrescenta mais 1 a variavel i que repete toda a instrução de comandos dentro do while
 		   i++;
-		   System.out.println(i);
-		   //acrescenta mais 1 ao fim dos digitos do CPF para fazer o loop
-		   cpfFim++;
-		   //acrescenta mais 1 a data de nascimento
-		   fimNasc++;
+		   UltimosDigitos++;
 		   
 		   if(i==max){
 			   driver.close();
 		   }
-		}	
+		     
+		}//while
+		 
+		System.out.println(usuario);
 		   
-	}
-	
-	
-}
+		}catch(Exception e){
+			e.printStackTrace();
+			//driver.quit();	
+		}
+		
+	}//metodo cadastroCompleto
+}//classe

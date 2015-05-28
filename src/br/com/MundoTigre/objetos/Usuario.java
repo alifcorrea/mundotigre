@@ -11,21 +11,22 @@ public class Usuario {
 	private String cpf;
 	private String email;
 	private String nome;
-	private int dataNascimento;
+	private String dataNascimento;
 	private String sexo;
-	private int profissaoAtividade;
+	private String profissaoAtividade;
 	private int tempoAtuacao;
-	private Long telefone;
-	private Long celular;
+	private String DDD;
+	private String telefone;
+	private String celular;
 	
 	
 	//Dados Residenciais 
-	private int cep;
+	private String cep;
 	private String Endereco;
-	private int numero;
+	private String numero;
 	private String complemento;
 	private int estado;
-	private int cidade;
+	private String cidade;
 	private String bairro;
 	
 	
@@ -35,16 +36,11 @@ public class Usuario {
 	private int empresa;
 	private int trabalhaEmpresa;
 	
-	
 	//Atividade física/esportiva
-	private int atividadeFisicaPreferida;
-	private int tipoCoracao;
+	private String timeCoracao;
 	
 	
 	//Informações complementares
-	private int novidades;
-	private int sms;
-	private int areaDesejaReceberInfo;
 	private String confirmaEmail;
 	private String senha;
 	private String confirmaSenha;
@@ -67,10 +63,10 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(int dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getSexo() {
@@ -79,10 +75,10 @@ public class Usuario {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public int getProfissaoAtividade() {
+	public String getProfissaoAtividade() {
 		return profissaoAtividade;
 	}
-	public void setProfissaoAtividade(int profissaoAtividade) {
+	public void setProfissaoAtividade(String profissaoAtividade) {
 		this.profissaoAtividade = profissaoAtividade;
 	}
 	public int getTempoAtuacao() {
@@ -91,22 +87,28 @@ public class Usuario {
 	public void setTempoAtuacao(int tempoAtuacao) {
 		this.tempoAtuacao = tempoAtuacao;
 	}
-	public Long getTelefone() {
+	public String getDDD() {
+		return DDD;
+	}
+	public void setDDD(String dDD) {
+		DDD = dDD;
+	}
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(Long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public Long getCelular() {
+	public String getCelular() {
 		return celular;
 	}
-	public void setCelular(Long celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	public String getEndereco() {
@@ -115,10 +117,10 @@ public class Usuario {
 	public void setEndereco(String endereco) {
 		Endereco = endereco;
 	}
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 	public String getComplemento() {
@@ -133,10 +135,10 @@ public class Usuario {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	public int getCidade() {
+	public String getCidade() {
 		return cidade;
 	}
-	public void setCidade(int cidade) {
+	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
 	public String getBairro() {
@@ -169,35 +171,11 @@ public class Usuario {
 	public void setTrabalhaEmpresa(int trabalhaEmpresa) {
 		this.trabalhaEmpresa = trabalhaEmpresa;
 	}
-	public int getAtividadeFisicaPreferida() {
-		return atividadeFisicaPreferida;
+	public String getTimeCoracao() {
+		return timeCoracao;
 	}
-	public void setAtividadeFisicaPreferida(int atividadeFisicaPreferida) {
-		this.atividadeFisicaPreferida = atividadeFisicaPreferida;
-	}
-	public int getTipoCoracao() {
-		return tipoCoracao;
-	}
-	public void setTipoCoracao(int tipoCoracao) {
-		this.tipoCoracao = tipoCoracao;
-	}
-	public int getNovidades() {
-		return novidades;
-	}
-	public void setNovidades(int novidades) {
-		this.novidades = novidades;
-	}
-	public int getSms() {
-		return sms;
-	}
-	public void setSms(int sms) {
-		this.sms = sms;
-	}
-	public int getAreaDesejaReceberInfo() {
-		return areaDesejaReceberInfo;
-	}
-	public void setAreaDesejaReceberInfo(int areaDesejaReceberInfo) {
-		this.areaDesejaReceberInfo = areaDesejaReceberInfo;
+	public void setTimeCoracao(String timeCoracao) {
+		this.timeCoracao = timeCoracao;
 	}
 	public String getConfirmaEmail() {
 		return confirmaEmail;
