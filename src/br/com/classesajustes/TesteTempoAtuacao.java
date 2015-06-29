@@ -1,4 +1,5 @@
-package br.com.MundoTigre.funcoesPrincipais.cadastro;
+package br.com.classesajustes;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,23 +8,19 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.Select;
 
-public class TesteTelefoneRes {
+public class TesteTempoAtuacao {
 public FirefoxDriver driver;
 	
-
-
 	//Variaveis que controlam a quantidade de vezes que o script é executado
 		int i = 0;
-		int max = 6;
+		int max = 5;
 		
 		//SEMPRE QUE FOR EXECUTAR OS SCRIPTS ALTERAR O VALOR DESTES CAMPOS, JÁ QUE NÃO PERMITE CADASTRAR COM O MESMO VALOR
-		int cpf = 8312;
-		String email = "aqtwr";
+		int cpf = 9564;
+		String email = "aiuor";
 		
-
 		@Before
 		public void Inicio(){
 			
@@ -32,15 +29,6 @@ public FirefoxDriver driver;
 		
 	@Test	
 	public void testarProfAtividade(){		
-		
-
-		//Na sexta execução abre uma nova guia do navegador com o JS desativado
-		if(i==6){
-			FirefoxProfile profileT = new FirefoxProfile();
-			profileT.setPreference("javascript.enabled", false);
-			//Abre uma guia do navegador
-			driver = new FirefoxDriver(profileT);
-		}
 		
 		while(i<=max){
 						
@@ -79,36 +67,26 @@ public FirefoxDriver driver;
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				
 				Select selTempoAtuacao = new Select(driver.findElement(By.id("cadastro-atuacao")));
-
-				selTempoAtuacao.selectByValue("1");				
-				
-				driver.findElement(By.id("cadastro-telefone-ddd")).click();
 				
 				if(i==1){
-					driver.findElement(By.id("cadastro-telefone-ddd")).click();
-					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("0");
+				selTempoAtuacao.selectByValue("1");				
 				}
-				
+		
 				if(i==2){
-					driver.findElement(By.id("cadastro-telefone-ddd")).click();
-					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("04");
+					selTempoAtuacao.selectByValue("2");	
 				}
 				
 				if(i==3){
-					driver.findElement(By.id("cadastro-telefone-ddd")).click();
-					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("047");
+					selTempoAtuacao.selectByValue("3");	
 				}
 				
 				if(i==4){
-					driver.findElement(By.id("cadastro-telefone-ddd")).click();
-					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("asd");
-				}
+					selTempoAtuacao.selectByValue("4");	
+				}	
 				
-				if(i==5){
-					driver.findElement(By.id("cadastro-telefone-ddd")).click();
-					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("%#$");
-				}
 				
+				driver.findElement(By.id("cadastro-telefone-ddd")).click();
+				driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("047");
 				
 				driver.findElement(By.id("cadastro-telefone")).click();
 				driver.findElement(By.id("cadastro-telefone")).sendKeys("988091642");

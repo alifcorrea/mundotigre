@@ -1,4 +1,4 @@
-package br.com.MundoTigre.scripts;
+package br.com.mundotigre.scripts.navegadores;
 
 
 	import java.util.List;

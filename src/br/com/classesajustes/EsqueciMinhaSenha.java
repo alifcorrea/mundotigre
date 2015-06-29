@@ -1,4 +1,5 @@
-package br.com.MundoTigre.funcoesPrincipais.cadastro;
+package br.com.classesajustes;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,16 +8,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class EsqueciMinhaSenha {
 	
-	public ChromeDriver driver;
+	public FirefoxDriver driver;
 	
 	@Before
 	public void Inicio(){
 
-	driver = new ChromeDriver();
+	driver = new FirefoxDriver();
 	
 	}
 	

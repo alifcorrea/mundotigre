@@ -1,4 +1,4 @@
-package br.com.MundoTigre.funcoesPrincipais.contato;
+package br.com.mundotigre.funcoesprincipais.contato;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
-import br.com.MundoTigre.objetos.Contato;
+import br.com.mundotigre.objetos.Contato;
 
 public class EntrarContato {
 	

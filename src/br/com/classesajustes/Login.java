@@ -1,4 +1,5 @@
-package br.com.MundoTigre.funcoesPrincipais.cadastro;
+package br.com.classesajustes;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,7 +8,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.MundoTigre.objetos.Usuario;
+import br.com.mundotigre.objetos.Usuario;
 
 public class Login {
 

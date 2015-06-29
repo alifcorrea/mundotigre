@@ -1,25 +1,25 @@
-package br.com.MundoTigre.funcoesPrincipais.cadastro;
-
-import java.util.concurrent.TimeUnit;
+package br.com.classesajustes;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
-public class TesteTempoAtuacao {
-public FirefoxDriver driver;
+public class TesteTelefoneRes {
 	
+	public FirefoxDriver driver;
+	
+
+
 	//Variaveis que controlam a quantidade de vezes que o script é executado
 		int i = 0;
-		int max = 5;
+		int max = 6;
 		
 		//SEMPRE QUE FOR EXECUTAR OS SCRIPTS ALTERAR O VALOR DESTES CAMPOS, JÁ QUE NÃO PERMITE CADASTRAR COM O MESMO VALOR
-		int cpf = 9564;
-		String email = "aiuor";
+		int cpf = 8312;
+		String email = "aqtwr";
 		
+
 		@Before
 		public void Inicio(){
 			
@@ -29,7 +29,16 @@ public FirefoxDriver driver;
 	@Test	
 	public void testarProfAtividade(){		
 		
-		while(i<=max){
+
+		//Na sexta execução abre uma nova guia do navegador com o JS desativado
+	
+			FirefoxProfile profileT = new FirefoxProfile();
+			profileT.setPreference("javascript.enabled", false);
+			//Abre uma guia do navegador
+			driver = new FirefoxDriver(profileT);
+	
+		
+		/*while(i<=max){
 						
 				//.get abre uma página web
 				driver.get("http://www.mundotigre.com.br/cadastro/new");
@@ -66,26 +75,36 @@ public FirefoxDriver driver;
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				
 				Select selTempoAtuacao = new Select(driver.findElement(By.id("cadastro-atuacao")));
+
+				selTempoAtuacao.selectByValue("1");				
+				
+				driver.findElement(By.id("cadastro-telefone-ddd")).click();
 				
 				if(i==1){
-				selTempoAtuacao.selectByValue("1");				
+					driver.findElement(By.id("cadastro-telefone-ddd")).click();
+					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("0");
 				}
-		
+				
 				if(i==2){
-					selTempoAtuacao.selectByValue("2");	
+					driver.findElement(By.id("cadastro-telefone-ddd")).click();
+					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("04");
 				}
 				
 				if(i==3){
-					selTempoAtuacao.selectByValue("3");	
+					driver.findElement(By.id("cadastro-telefone-ddd")).click();
+					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("047");
 				}
 				
 				if(i==4){
-					selTempoAtuacao.selectByValue("4");	
-				}	
+					driver.findElement(By.id("cadastro-telefone-ddd")).click();
+					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("asd");
+				}
 				
+				if(i==5){
+					driver.findElement(By.id("cadastro-telefone-ddd")).click();
+					driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("%#$");
+				}
 				
-				driver.findElement(By.id("cadastro-telefone-ddd")).click();
-				driver.findElement(By.id("cadastro-telefone-ddd")).sendKeys("047");
 				
 				driver.findElement(By.id("cadastro-telefone")).click();
 				driver.findElement(By.id("cadastro-telefone")).sendKeys("988091642");
@@ -97,7 +116,7 @@ public FirefoxDriver driver;
 				driver.findElement(By.id("cadastro-celular")).sendKeys("987654321");
 				
 				/*------------------ Dados residenciais-----------------------*/
-				driver.findElement(By.id("cadastro-cep")).click();
+				/*driver.findElement(By.id("cadastro-cep")).click();
 				driver.findElement(By.id("cadastro-cep")).sendKeys("89235735222");
 				driver.findElement(By.id("cadastro-endereco")).sendKeys("Rua cidade de Maracajá");
 				driver.findElement(By.id("cadastro-numero")).sendKeys("155");
@@ -114,7 +133,7 @@ public FirefoxDriver driver;
 				driver.findElement(By.id("cadastro-bairro")).sendKeys("Parque Guarani");
 				
 				/*---------------Empresa em que trabalha ou costuma comprar produtos Tigre------------*/
-				Select selEstado = new Select(driver.findElement(By.id("mundo_tigre_mtg_id_est_emp")));
+			/*	Select selEstado = new Select(driver.findElement(By.id("mundo_tigre_mtg_id_est_emp")));
 				selEstado.selectByIndex(24);
 				
 				//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -131,7 +150,7 @@ public FirefoxDriver driver;
 				/*-----------------------Atividade física/esportiva------------------------*/
 
 				//Cria os objetos checkbox
-				 WebElement checkBox1;
+			/*	 WebElement checkBox1;
 				 WebElement checkBox2;
 				 WebElement checkBox3;
 				 WebElement checkBox4;
@@ -241,6 +260,6 @@ public FirefoxDriver driver;
 				   i++;
 				   cpf++;
 				   		 
-			}
+			}*/
 	}
 }

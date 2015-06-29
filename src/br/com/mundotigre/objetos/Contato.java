@@ -1,4 +1,4 @@
-package br.com.MundoTigre.objetos;
+package br.com.mundotigre.objetos;
 
 public class Contato {
 	

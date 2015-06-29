@@ -1,4 +1,4 @@
-package br.com.MundoTigre.objetos;
+package br.com.mundotigre.objetos;
 
 public class Usuario {
 	
@@ -14,11 +14,11 @@ public class Usuario {
 	private String dataNascimento;
 	private String sexo;
 	private String profissaoAtividade;
-	private int tempoAtuacao;
+	private String profissaoDetalhe;
+	private String tempoAtuacao;
 	private String DDD;
 	private String telefone;
 	private String celular;
-	
 	
 	//Dados Residenciais 
 	private String cep;
@@ -33,7 +33,7 @@ public class Usuario {
 	//Empresa em que trabalha ou costuma comprar produtos Tigre
 	private int estadoEmpresa;
 	private int cidadeEmpresa;
-	private int empresa;
+	private String empresa;
 	private int trabalhaEmpresa;
 	
 	//Atividade física/esportiva
@@ -44,7 +44,7 @@ public class Usuario {
 	private String confirmaEmail;
 	private String senha;
 	private String confirmaSenha;
-	
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -81,10 +81,16 @@ public class Usuario {
 	public void setProfissaoAtividade(String profissaoAtividade) {
 		this.profissaoAtividade = profissaoAtividade;
 	}
-	public int getTempoAtuacao() {
+	public String getProfissaoDetalhe() {
+		return profissaoDetalhe;
+	}
+	public void setProfissaoDetalhe(String profissaoDetalhe) {
+		this.profissaoDetalhe = profissaoDetalhe;
+	}
+	public String getTempoAtuacao() {
 		return tempoAtuacao;
 	}
-	public void setTempoAtuacao(int tempoAtuacao) {
+	public void setTempoAtuacao(String tempoAtuacao) {
 		this.tempoAtuacao = tempoAtuacao;
 	}
 	public String getDDD() {
@@ -159,10 +165,10 @@ public class Usuario {
 	public void setCidadeEmpresa(int cidadeEmpresa) {
 		this.cidadeEmpresa = cidadeEmpresa;
 	}
-	public int getEmpresa() {
+	public String getEmpresa() {
 		return empresa;
 	}
-	public void setEmpresa(int empresa) {
+	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
 	public int getTrabalhaEmpresa() {
@@ -195,7 +201,5 @@ public class Usuario {
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
 	}
-	
-	
 	
 }

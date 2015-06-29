@@ -1,4 +1,4 @@
-package br.com.MundoTigre.funcoesPrincipais.cadastro;
+package br.com.classesajustes;
 
 
 import java.util.concurrent.TimeUnit;

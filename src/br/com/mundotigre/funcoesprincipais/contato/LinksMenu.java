@@ -1,4 +1,4 @@
-package br.com.MundoTigre.funcoesPrincipais.contato;
+package br.com.mundotigre.funcoesprincipais.contato;
 
 import java.util.concurrent.TimeUnit;
 
