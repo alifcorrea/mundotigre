@@ -1,4 +1,4 @@
-package br.com.classesajustes;
+package br.com.mundotigre.funcoesprincipais.login;
 
 
 import java.util.concurrent.TimeUnit;
@@ -23,12 +23,12 @@ public class Login {
 	public void loginSite(){
 		
 		Usuario usuario = new Usuario();
-		usuario.setCpf("12312312312");
+		//usuario.setCpf("12312312312");
 		
 		logar();
 		
 		driver.findElement(By.id("login-cpf")).click();
-		driver.findElement(By.id("login-cpf")).sendKeys(usuario.getCpf());
+		//driver.findElement(By.id("login-cpf")).sendKeys(usuario.getCpf());
 		
 		driver.findElement(By.xpath("//*[@value='OK']")).submit();
 		

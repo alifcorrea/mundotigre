@@ -1,4 +1,4 @@
-package br.com.mundotigre.funcoesprincipais.contato;
+package br.com.mundotigre.classesincompletas;
 
 import java.util.concurrent.TimeUnit;
 

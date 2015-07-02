@@ -1,13 +1,12 @@
 package br.com.mundotigre.scripts;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.Select;
 
 public class InteracoesNavegador {
@@ -26,10 +25,7 @@ public class InteracoesNavegador {
 	
 	
 	@Test
-	public void desativarJSFirefox(FirefoxDriver driver){
-		FirefoxProfile profile = new FirefoxProfile();
-		profile.setPreference("browser.download.folderList",2);
-		driver = new FirefoxDriver(profile);
+	public void desativarJSFirefox(WebDriver driver){
 		
 	}	
 
@@ -55,7 +51,6 @@ public class InteracoesNavegador {
 	}	
 	
 	
-
 	/*-----------------------Somente setar valor--------------------------*/
 	@Test
 	public void setarValorPorID(WebDriver driver, String idCampo, String valorCampo){
@@ -171,6 +166,14 @@ public class InteracoesNavegador {
 	    if(!checkbox.isSelected()){
 	    	checkbox.click();
 	    }
+	}
+	
+	@Test
+	public void contarElementosPorXpath(WebDriver driver, String valorCampo){
+		
+		List<WebElement> listaDeElementos = driver.findElements(By.xpath(valorCampo));
+		int count = listaDeElementos.size();
+		System.out.println("O campo "+ valorCampo +" contém "+ count +" elementos");
 	}
 	
 }

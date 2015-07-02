@@ -25,22 +25,25 @@ public class Usuario {
 	private String Endereco;
 	private String numero;
 	private String complemento;
-	private int estado;
+	private String estado;
 	private String cidade;
 	private String bairro;
 	
 	
 	//Empresa em que trabalha ou costuma comprar produtos Tigre
-	private int estadoEmpresa;
-	private int cidadeEmpresa;
+	private String estadoEmpresa;
+	private String cidadeEmpresa;
 	private String empresa;
-	private int trabalhaEmpresa;
+	private String trabalhaEmpresa;
 	
 	//Atividade física/esportiva
 	private String timeCoracao;
-	
+	private String atividadeFisicaPreferida;
 	
 	//Informações complementares
+	private String novidades;
+	private String SMS;
+	private String areaDesejaReceberInfo;
 	private String confirmaEmail;
 	private String senha;
 	private String confirmaSenha;
@@ -135,10 +138,10 @@ public class Usuario {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	public String getCidade() {
@@ -153,16 +156,16 @@ public class Usuario {
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
-	public int getEstadoEmpresa() {
+	public String getEstadoEmpresa() {
 		return estadoEmpresa;
 	}
-	public void setEstadoEmpresa(int estadoEmpresa) {
+	public void setEstadoEmpresa(String estadoEmpresa) {
 		this.estadoEmpresa = estadoEmpresa;
 	}
-	public int getCidadeEmpresa() {
+	public String getCidadeEmpresa() {
 		return cidadeEmpresa;
 	}
-	public void setCidadeEmpresa(int cidadeEmpresa) {
+	public void setCidadeEmpresa(String cidadeEmpresa) {
 		this.cidadeEmpresa = cidadeEmpresa;
 	}
 	public String getEmpresa() {
@@ -171,10 +174,10 @@ public class Usuario {
 	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
-	public int getTrabalhaEmpresa() {
+	public String getTrabalhaEmpresa() {
 		return trabalhaEmpresa;
 	}
-	public void setTrabalhaEmpresa(int trabalhaEmpresa) {
+	public void setTrabalhaEmpresa(String trabalhaEmpresa) {
 		this.trabalhaEmpresa = trabalhaEmpresa;
 	}
 	public String getTimeCoracao() {
@@ -182,6 +185,30 @@ public class Usuario {
 	}
 	public void setTimeCoracao(String timeCoracao) {
 		this.timeCoracao = timeCoracao;
+	}
+	public String getAtividadeFisicaPreferida() {
+		return atividadeFisicaPreferida;
+	}
+	public void setAtividadeFisicaPreferida(String atividadeFisicaPreferida) {
+		this.atividadeFisicaPreferida = atividadeFisicaPreferida;
+	}
+	public String getNovidades() {
+		return novidades;
+	}
+	public void setNovidades(String novidades) {
+		this.novidades = novidades;
+	}
+	public String getSMS() {
+		return SMS;
+	}
+	public void setSMS(String sMS) {
+		SMS = sMS;
+	}
+	public String getAreaDesejaReceberInfo() {
+		return areaDesejaReceberInfo;
+	}
+	public void setAreaDesejaReceberInfo(String areaDesejaReceberInfo) {
+		this.areaDesejaReceberInfo = areaDesejaReceberInfo;
 	}
 	public String getConfirmaEmail() {
 		return confirmaEmail;
@@ -201,5 +228,10 @@ public class Usuario {
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
 	}
+	public void setAtividadeFisicaPreferida(int i, int j) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

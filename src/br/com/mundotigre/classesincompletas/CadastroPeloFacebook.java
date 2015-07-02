@@ -1,4 +1,4 @@
-package br.com.classesajustes;
+package br.com.mundotigre.classesincompletas;
 
 
 import java.util.concurrent.TimeUnit;

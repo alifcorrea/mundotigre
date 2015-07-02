@@ -1,6 +1,5 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -9,19 +8,9 @@ import br.com.mundotigre.scripts.FuncoesCadastro;
 import br.com.mundotigre.scripts.InteracoesNavegador;
 
 public class CasoProfissaoDetalhe {
-	
-	public InteracoesNavegador funcoes;
-	public FuncoesCadastro funcoesCadastro;
-	
-	@Before
-	public void Inicio() {
-		funcoes = new InteracoesNavegador();
-		funcoesCadastro = new FuncoesCadastro();
-	
-	}
-	
+		
 	 @Test 
-	 public void testarProfissaoDetalhe(WebDriver driver, Usuario usuario){
+	 public void testarProfissaoDetalhe(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){
 		 
        	  long tempoInicio = System.currentTimeMillis(); 		 
 		  System.out.println("\n------------------------------Teste Profissao/Detalhe--------------------------------");
@@ -36,30 +25,6 @@ public class CasoProfissaoDetalhe {
 		  
 		  while(i<=max){
 			  		  
-			  String cpf = usuario.getCpf()+i;
-			  String email = usuario.getEmail()+i+"@mail.com";
-			  //Seta a opção estudante
-			 
-			  
-			  funcoes.abrirLink(driver, "http://www.mundotigre.com.br/cadastro/new");
-			  funcoes.AguardarCarregamento(driver);	  
-			  funcoes.clicarESetarPorID(driver, "login-cpf", cpf);
-			  funcoes.clicarESetarPorID(driver, "login-senha", email);
-			  funcoes.clicarCampoPorXpath(driver, "//*[@value='Cadastrar']");			  
-		
-			  funcoes.AguardarCarregamento(driver);
-			  
-			  if(funcoesCadastro.CadastroJaRealizado(driver)){System.out.println("Email ou Cpf já cadastrados. Teste: "+ i);};
-
-			  funcoes.clicarESetarPorNome(driver, "mundo_tigre[mtg_nome]", usuario.getNome());
-			  funcoes.clicarESetarPorID(driver, "cadastro-nascimento", "22/11/1994");	
-			  funcoes.campoSelectValuePorID(driver, "cadastro-sexo",usuario.getSexo()); 
-			  
-			  usuario.setProfissaoAtividade("39");
-			  funcoes.campoSelectValuePorID(driver,"mundo_tigre_mtg_id_prs", usuario.getProfissaoAtividade());	  
-			  
-			  funcoes.AguardarCarregamento(driver);
-			  
 			  if(i==0){
 				  usuario.setProfissaoDetalhe("");
 			  } 
@@ -68,77 +33,26 @@ public class CasoProfissaoDetalhe {
 				  usuario.setProfissaoDetalhe("13");
 			  }
 			  
-			  funcoes.campoSelectValuePorID(driver, "mundo_tigre_mtg_id_prs_det", usuario.getProfissaoDetalhe());		   
-			  funcoes.campoSelectValuePorID(driver, "cadastro-atuacao", usuario.getTempoAtuacao());  
-			  funcoes.clicarESetarPorID(driver, "cadastro-telefone-ddd", usuario.getDDD()); 
-			  funcoes.clicarESetarPorID(driver, "cadastro-telefone", usuario.getTelefone()); 
-			  funcoes.clicarESetarPorID(driver,"cadastro-celular-ddd", usuario.getDDD());
-			  funcoes.clicarESetarPorID(driver, "cadastro-celular", usuario.getCelular());
-			  
-			  
-			 /*------------------ Dados residenciais-----------------------*/	
-			  funcoes.clicarESetarPorID(driver,"cadastro-cep", "89235735222");
-			  funcoes.clicarESetarPorID(driver,"cadastro-endereco", "Rua cidade de Maracajá"); 
-			  funcoes.clicarESetarPorID(driver,"cadastro-numero", usuario.getNumero());
-			  funcoes.clicarESetarPorID(driver,"cadastro-complemento", usuario.getEndereco()); 
-			  funcoes.campoSelectIndexPorID(driver,"mundo_tigre_mtg_id_est", usuario.getEstado());	  
-			  funcoes.AguardarCarregamento(driver);	  
-			  funcoes.campoSelectValuePorID(driver, "mundo_tigre_mtg_cidade", usuario.getCidade()); 
-			  funcoes.clicarESetarPorID(driver,"cadastro-bairro", usuario.getBairro());
-			  
-			  
-			 /*---------------Empresa em que trabalha ou costuma comprar produtos Tigre------------*/	
-			  funcoes.campoSelectIndexPorID(driver, "mundo_tigre_mtg_id_est_emp", usuario.getEstado());
-			  funcoes.AguardarCarregamento(driver);
-			  funcoes.campoSelectValuePorID(driver,"mundo_tigre_mtg_cidade_emp", usuario.getCidade());
-			  funcoes.AguardarCarregamento(driver); 	  
-			  funcoes.campoSelectValuePorID(driver, "mundo_tigre_mtg_cnpj_emp", usuario.getEmpresa());	  	  
-			  funcoes.campoSelectIndexPorID(driver, "cadastro-mtg_trabalha_empresa", usuario.getTrabalhaEmpresa());
-			  
-			  
-			  /*-----------------------Atividade física/esportiva------------------------*/	
-			  funcoes.marcarCheckboxPorCssSelector(driver,"input[id='mundo_tigre_atividade_fisica_list_5']");
-			  funcoes.marcarCheckboxPorCssSelector(driver,"input[id='mundo_tigre_atividade_fisica_list_3']");
-			  funcoes.marcarCheckboxPorCssSelector(driver,"input[id='mundo_tigre_atividade_fisica_list_4']");
-			  funcoes.marcarCheckboxPorCssSelector(driver,"input[id='mundo_tigre_atividade_fisica_list_6']");
-			  funcoes.marcarCheckboxPorCssSelector(driver,"input[id='mundo_tigre_atividade_fisica_list_1']");
-			  funcoes.marcarCheckboxPorCssSelector(driver,"input[id='mundo_tigre_atividade_fisica_list_8']");
-			  funcoes.marcarCheckboxPorCssSelector(driver,"input[id='mundo_tigre_atividade_fisica_list_13']");
-			  funcoes.marcarCheckboxPorID(driver,"mundo_tigre_atividade_fisica_list_12");
-			  funcoes.marcarCheckboxPorID(driver,"mundo_tigre_atividade_fisica_list_7");
-			  funcoes.marcarCheckboxPorID(driver,"mundo_tigre_atividade_fisica_list_2");	  
-			  funcoes.campoSelectValuePorID(driver,"cadastro-mtg_time_coracao", usuario.getTimeCoracao());
-			  funcoes.clicarCampoPorID(driver,"cadastro-novidade"); 
-			  funcoes.clicarCampoPorID(driver, "cadastro-sms");	  
-			  funcoes.marcarCheckboxPorID(driver, "mundo_tigre_area_interesse_list_1");
-			  funcoes.marcarCheckboxPorID(driver, "mundo_tigre_area_interesse_list_14");
-			  funcoes.marcarCheckboxPorID(driver, "mundo_tigre_area_interesse_list_2");
-			  funcoes.marcarCheckboxPorID(driver, "mundo_tigre_area_interesse_list_3");	  
-			  funcoes.clicarESetarPorID(driver, "email-confirme", email);
-			  funcoes.clicarESetarPorID(driver, "cadastro-senha", usuario.getSenha());
-			  funcoes.clicarESetarPorID(driver, "cadastro-senha-confirme", usuario.getConfirmaSenha());	  
-			  funcoes.clicarCampoPorCssSelector(driver, ".submit");
-			  
+			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);			
+			
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com o campo Profissao/Atividade: " + usuario.getProfissaoDetalhe());
 			  }
 			  
 			  /*--------------------Impressao de log----------------------*/
-			  if(funcoesCadastro.CadastroJaRealizado(driver)) {
+			  if(funcoesCadastro.cadastroRealizado(driver)) {
 		
-				  	funcoesCadastro.logCampoOK(driver, "Profissão/Detalhe", usuario.getProfissaoDetalhe());
+				  funcoesCadastro.logCampoOK(driver, "Profissão/Detalhe", usuario.getProfissaoDetalhe());
 					quantidadeAcertos++;
 				
 			  }else{
-				  	funcoesCadastro.logCampoErro(driver, "Profissão/Detalhe", usuario.getProfissaoDetalhe());
+				  funcoesCadastro.logCampoErro(driver, "Profissão/Detalhe", usuario.getProfissaoDetalhe());
 					quantidadeErros++;		
 			  }
 		
 			  if(i==max){
 				  funcoesCadastro.logInformacoesExecucao(driver, "Nome", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			} /*--------------------Fim Impressao de log----------------------*/	
-		  
-			funcoes.AguardarCarregamento(driver);  
 			
 			i++;
 		 } 
