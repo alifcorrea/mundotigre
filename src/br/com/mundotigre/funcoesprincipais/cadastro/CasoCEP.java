@@ -1,19 +1,22 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import br.com.mundotigre.objetos.Usuario;
 import br.com.mundotigre.scripts.FuncoesCadastro;
+import br.com.mundotigre.scripts.FuncoesMT;
 import br.com.mundotigre.scripts.InteracoesNavegador;
 
 public class CasoCEP {
 	
 	 @Test 
-	 public void testarCEP(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
+	 public void testarCEP(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesMT funcoesMT, FuncoesCadastro funcoesCadastro){		 
 		 
-		  long tempoInicio = System.currentTimeMillis(); 		 
-		  System.out.println("\n-----------------------------Teste CEP-------------------------------");
+		  long tempoInicio = System.currentTimeMillis(); 
+		  String nomeCampo = "CEP";
+		  System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");
 		 
 		  int i = 0; 
 		  int max = 7;	
@@ -53,7 +56,7 @@ public class CasoCEP {
 				  usuario.setCep("@%&!");
 			  }
 			  
-			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com o campo CEP: " + usuario.getCep());
@@ -62,7 +65,7 @@ public class CasoCEP {
 			 /* --------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {	
 				  
-				  funcoesCadastro.logCampoOK(driver, "CEP", usuario.getCep());
+				  funcoesMT.logCampoOK(driver, logger, nomeCampo, usuario.getCep());
 					
 				  if(i <= 7) {
 					  quantidadeAcertos++;
@@ -71,7 +74,7 @@ public class CasoCEP {
 				  		}
 		
 			  }else {				  
-					  funcoesCadastro.logCampoErro(driver, "CEP", usuario.getCep());
+				  funcoesMT.logCampoErro(driver, logger, nomeCampo, usuario.getCep());
 				  	
 					  if(i <= 7) {							
 							quantidadeErros++;
@@ -80,11 +83,12 @@ public class CasoCEP {
 							}
 			 }
 			  
-			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, "CEP", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
-			  }
-		  
+			if(i==max){
+				funcoesMT.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+			}
 			i++;
-		 } 
-	 }	
-}
+		} 
+	}
+}	
+	 
+

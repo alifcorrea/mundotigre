@@ -1,5 +1,6 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +11,11 @@ import br.com.mundotigre.scripts.InteracoesNavegador;
 public class CasoDataNascimento {
 
 	@Test 
-	 public void testarDataNascimento(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){ 
+	 public void testarDataNascimento(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){ 
 		
 		  long tempoInicio = System.currentTimeMillis(); 
-		  System.out.println("\n-----------------------------Teste Data de Nascimento-------------------------------");
+		  String nomeCampo = "Data de Nascimento";
+		  System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");
 				 
 		  int i = 0; 
 		  int max = 13;
@@ -26,7 +28,7 @@ public class CasoDataNascimento {
 		  while(i<=max){
 			  
 			  if(i==37){
-				  interacoesNavegador.desativarJSFirefox(driver);	
+				  interacoesNavegador.desativarJSFirefox(driver, logger, nomeCampo);	
 			  }
 			
 			  if(i==0 || i==7){
@@ -57,7 +59,7 @@ public class CasoDataNascimento {
 				  usuario.setDataNascimento("26/12/2015");
 			  }
 
-			  funcoesCadastro.cadastroCompleto(driver, usuario,"http://www.mundotigre.com.br/cadastro/new" , i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com a data de nascimento: " + usuario.getDataNascimento());
@@ -66,7 +68,7 @@ public class CasoDataNascimento {
 			  /*--------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {
 		
-				  funcoesCadastro.logCampoOK(driver, "Data de Nascimento", usuario.getDataNascimento());
+				  funcoesCadastro.logCampoOK(driver, logger, nomeCampo, usuario.getDataNascimento());
 			
 					if(i<=6) {
 						quantidadeAcertos++;
@@ -78,7 +80,7 @@ public class CasoDataNascimento {
 		
 			  }else {
 				  
-				  	funcoesCadastro.logCampoErro(driver, "Data de Nascimento", usuario.getDataNascimento());
+				  	funcoesCadastro.logCampoErro(driver,logger, nomeCampo, usuario.getDataNascimento());
 					
 					if(i<=6) {
 						quantidadeErros++;
@@ -90,7 +92,7 @@ public class CasoDataNascimento {
 			  }
 		
 			if(i==max) {
-				 funcoesCadastro.logInformacoesExecucao(driver, "Data de Nascimento", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				 funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			
 			}
 		  

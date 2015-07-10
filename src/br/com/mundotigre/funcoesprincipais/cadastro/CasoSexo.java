@@ -1,5 +1,6 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +11,11 @@ import br.com.mundotigre.scripts.InteracoesNavegador;
 public class CasoSexo {
 	
 	 @Test 
-	 public void testarSexo(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){
+	 public void testarSexo(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){
 		 
 		  long tempoInicio = System.currentTimeMillis(); 
-		  System.out.println("\n-----------------------------Teste Sexo-------------------------------");
+		  String nomeCampo = "Sexo";
+		  System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");
 		 
 		  int i = 0; 
 		  int max = 2;		
@@ -38,7 +40,7 @@ public class CasoSexo {
 				  usuario.setSexo("F");
 			  }			  
 			
-			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com o Sexo: " + usuario.getSexo());
@@ -47,16 +49,16 @@ public class CasoSexo {
 			  /*--------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {
 		
-				  	funcoesCadastro.logCampoOK(driver, "Sexo", usuario.getSexo());
+				  	funcoesCadastro.logCampoOK(driver, logger, nomeCampo, usuario.getSexo());
 					quantidadeAcertos++;
 					
 			  }else{
-				  funcoesCadastro.logCampoErro(driver, "Sexo", usuario.getSexo());
+				  funcoesCadastro.logCampoErro(driver, logger, nomeCampo, usuario.getSexo());
 					quantidadeErros++;		
 			  		}
 		
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, "Sexo", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			  } 
 		  
 			  interacoesNavegador.AguardarCarregamento(driver);  

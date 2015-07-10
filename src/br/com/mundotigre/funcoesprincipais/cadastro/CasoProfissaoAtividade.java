@@ -1,5 +1,6 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +11,12 @@ import br.com.mundotigre.scripts.InteracoesNavegador;
 public class CasoProfissaoAtividade {
 	
 	 @Test 
-	 public void testarProfissaoAtividade(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){
+	 public void testarProfissaoAtividade(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){
 		 
-       	  long tempoInicio = System.currentTimeMillis(); 		 
-		  System.out.println("\n------------------------------Teste Profissao/Atividade--------------------------------");
+       	  long tempoInicio = System.currentTimeMillis(); 
+       	  String nomeCampo = "Profissao/Atividade";
+       	  
+		  System.out.println("\n------------------------------Teste "+nomeCampo+"--------------------------------");
 		 
 		  int i = 0; 
 		  int max = 2;
@@ -41,7 +44,7 @@ public class CasoProfissaoAtividade {
 				  usuario.setProfissaoAtividade("99");
 			  }			  
 			  
-			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com o campo Profissao/Atividade: " + usuario.getProfissaoAtividade());
@@ -50,17 +53,17 @@ public class CasoProfissaoAtividade {
 			  /*--------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {
 		
-				  	funcoesCadastro.logCampoOK(driver, "Profissão/Atividade", usuario.getProfissaoAtividade());
+				  	funcoesCadastro.logCampoOK(driver, logger, nomeCampo, usuario.getProfissaoAtividade());
 					quantidadeAcertos++;
 				
 			  }else{
 				  
-				  	funcoesCadastro.logCampoErro(driver, "Profissão/Atividade", usuario.getProfissaoAtividade());
+				  	funcoesCadastro.logCampoErro(driver, logger, nomeCampo,  usuario.getProfissaoAtividade());
 					quantidadeErros++;		
 			  }
 		
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, "Profissão/Atividade", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			} /*--------------------Fim Impressao de log----------------------*/	
 		  
 			i++;

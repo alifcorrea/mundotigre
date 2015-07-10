@@ -1,5 +1,6 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +11,11 @@ import br.com.mundotigre.scripts.InteracoesNavegador;
 public class CasoNumero {
 	
 	 @Test 
-	 public void testarNumero(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
+	 public void testarNumero(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
 		 
-		  long tempoInicio = System.currentTimeMillis(); 		 
-		  System.out.println("\n-----------------------------Teste Número-------------------------------");		 
+		  long tempoInicio = System.currentTimeMillis(); 	
+		  String nomeCampo = "Número";
+		  System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");		 
 		  int i = 0; 
 		  int max = 7;	
 
@@ -25,8 +27,8 @@ public class CasoNumero {
 		  while(i<=max){	
 	
 			  if(i==6) {
-				    interacoesNavegador.desativarJSFirefox(driver);
-					System.out.println("\n------------------Telefone Número com Javascript desabilitado--------------------");
+				    interacoesNavegador.desativarJSFirefox(driver, logger, nomeCampo);
+					System.out.println("\n------------------"+nomeCampo+" com Javascript desabilitado--------------------");
 			  }
 	 
 			  if(i==0 || i==7){
@@ -58,7 +60,7 @@ public class CasoNumero {
 			  }
 			  
 			
-			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com o campo Número: " + usuario.getNumero());
@@ -67,16 +69,16 @@ public class CasoNumero {
 			 /* --------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {	
 				  
-				  funcoesCadastro.logCampoOK(driver, "Número", usuario.getNumero());
+				  funcoesCadastro.logCampoOK(driver, logger, nomeCampo, usuario.getNumero());
 					quantidadeAcertos++;
 		
 			  }else {				  
-				  funcoesCadastro.logCampoErro(driver, "Número", usuario.getNumero());
+				  funcoesCadastro.logCampoErro(driver, logger, nomeCampo, usuario.getNumero());
 					quantidadeErros++;
 			  }
 			  
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, "Número", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			  }
 		  
 			i++;

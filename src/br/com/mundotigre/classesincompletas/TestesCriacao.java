@@ -26,7 +26,11 @@ public class TestesCriacao {
 		
 		    System.out.println(checkbox[2]);*/
 		  
+		
 
 	}
+	
+
+	 
 
 }

@@ -1,9 +1,8 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 
 import br.com.mundotigre.objetos.Usuario;
 import br.com.mundotigre.scripts.FuncoesCadastro;
@@ -12,10 +11,12 @@ import br.com.mundotigre.scripts.InteracoesNavegador;
 public class CasoTelefoneCelular {
 		
 	 @Test 
-	 public void testarTelefoneCelular(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
+	 public void testarTelefoneCelular(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
 		 
-		  long tempoInicio = System.currentTimeMillis(); 		 
-		  System.out.println("\n-----------------------------Teste Telefone Celular-------------------------------");
+		  long tempoInicio = System.currentTimeMillis(); 		
+		  String nomeCampo = "Telefone Celular";
+		  
+		  System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");
 		 
 		  int i = 0; 
 		  int max = 7;	
@@ -28,8 +29,8 @@ public class CasoTelefoneCelular {
 		  while(i<=max){	
 			  
 			  if (i == 6) {
-				    interacoesNavegador.desativarJSFirefox(driver);
-					System.out.println("\n------------------Telefone celular com Javascript desabilitado--------------------");
+				    interacoesNavegador.desativarJSFirefox(driver, logger, nomeCampo);
+					System.out.println("\n------------------"+nomeCampo+" com Javascript desabilitado--------------------");
 				}
 			  
 			
@@ -61,7 +62,7 @@ public class CasoTelefoneCelular {
 				  usuario.setCelular("@%&!");
 			  }
 			
-			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com o campo Telefone Celular: " + usuario.getCelular());
@@ -70,16 +71,16 @@ public class CasoTelefoneCelular {
 			 /* --------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {	
 				  
-				  funcoesCadastro.logCampoOK(driver, "Telefone Celular", usuario.getCelular());
+				  funcoesCadastro.logCampoOK(driver, logger, nomeCampo, usuario.getCelular());
 					quantidadeAcertos++;
 		
 			  }else {				  
-				  funcoesCadastro.logCampoErro(driver, "Telefone Celular", usuario.getCelular());
+				  funcoesCadastro.logCampoErro(driver, logger, nomeCampo, usuario.getCelular());
 					quantidadeErros++;
 			  }
 			  
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, "Telefone Celular", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			  }
 		  
 			i++;

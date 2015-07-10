@@ -1,5 +1,6 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +11,13 @@ import br.com.mundotigre.scripts.InteracoesNavegador;
 public class CasoNome {
 	
 	 @Test 
-	 public void testarNome(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
+	 public void testarNome(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
 		 
-		  long tempoInicio = System.currentTimeMillis(); 		 
-		  System.out.println("\n-----------------------------Teste Nome-------------------------------");
+		  long tempoInicio = System.currentTimeMillis(); 	
+		  
+		  String nomeCampo = "Nome";
+		  
+		  System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");
 		 
 		  int i = 0; 
 		  int max = 7;	
@@ -58,7 +62,7 @@ public class CasoNome {
 				  usuario.setNome("Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu");
 			  }
 			
-			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
@@ -68,7 +72,7 @@ public class CasoNome {
 			  /*--------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {	
 				  
-				  	funcoesCadastro.logCampoOK(driver, "Nome", usuario.getNome());
+				  	funcoesCadastro.logCampoOK(driver, logger, nomeCampo, usuario.getNome());
 					
 					 if(i <= 7) {
 						 quantidadeAcertos++;
@@ -77,7 +81,7 @@ public class CasoNome {
 					  		}
 		
 			  }else {				  
-				  	funcoesCadastro.logCampoErro(driver, "Nome", usuario.getNome());	
+				  	funcoesCadastro.logCampoErro(driver, logger, nomeCampo, usuario.getNome());	
 				  	
 				    if(i <= 7) {							
 						quantidadeErros++;
@@ -87,7 +91,7 @@ public class CasoNome {
 			  }
 			  
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, "Nome", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			  }
 		  
 			i++;

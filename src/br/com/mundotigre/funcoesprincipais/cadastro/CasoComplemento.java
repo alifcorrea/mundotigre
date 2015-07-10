@@ -1,5 +1,6 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +11,11 @@ import br.com.mundotigre.scripts.InteracoesNavegador;
 public class CasoComplemento {
 	
 	 @Test 
-	 public void testarComplemento(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
+	 public void testarComplemento(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
 		 
-		  long tempoInicio = System.currentTimeMillis(); 		 
-		  System.out.println("\n-----------------------------Teste Complemento-------------------------------");
+		  long tempoInicio = System.currentTimeMillis(); 
+		  String nomeCampo = "Complemento";
+		  System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");
 		 
 		  int i = 0; 
 		  int max = 7;	
@@ -27,7 +29,7 @@ public class CasoComplemento {
 			
 	
 			  if(i==7){
-				  interacoesNavegador.desativarJSFirefox(driver);
+				  interacoesNavegador.desativarJSFirefox(driver, logger, nomeCampo);
 			  }
 					 
 			  if(i==0 || i==7){
@@ -58,7 +60,7 @@ public class CasoComplemento {
 				  usuario.setComplemento("Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a");
 			  }
 			  
-			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com o campo Complemento: " + usuario.getComplemento());
@@ -69,17 +71,17 @@ public class CasoComplemento {
 			  /* --------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {	
 				  
-				  funcoesCadastro.logCampoOK(driver, "Complemento", usuario.getComplemento());
+				  funcoesCadastro.logCampoOK(driver, logger, nomeCampo, usuario.getComplemento());
 					quantidadeAcertos++;
 
 			
 				  	}else {				  
-						  funcoesCadastro.logCampoErro(driver, "Complemento", usuario.getComplemento());
+						  funcoesCadastro.logCampoErro(driver, logger, nomeCampo, usuario.getComplemento());
 						  quantidadeErros++;		
 				  	}
 			  
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, "Complemento", quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			  }
 		  
 			  interacoesNavegador.AguardarCarregamento(driver);  

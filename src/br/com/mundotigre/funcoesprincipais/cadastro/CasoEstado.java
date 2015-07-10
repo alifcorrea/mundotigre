@@ -1,5 +1,6 @@
 package br.com.mundotigre.funcoesprincipais.cadastro;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -10,12 +11,15 @@ import br.com.mundotigre.scripts.InteracoesNavegador;
 public class CasoEstado {
 	
 	 @Test 
-	 public void testarEstado(WebDriver driver, Usuario usuario, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){	
-		 System.out.println("\n-----------------------------Teste Estado-------------------------------");
-		 long tempoInicio = System.currentTimeMillis(); 	
+	 public void testarEstado(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){	
+		
+		 long tempoInicio = System.currentTimeMillis();
 		 
-		  String campo = "Estado";
-		  String valorCampo = usuario.getEstado();	
+		 String nomeCampo = "Estado";
+		 String valorCampo = usuario.getEstado();	
+		 
+		 System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");
+		 
 
 		  int quantidadeAcertos = 0;
 		  int quantidadeErros = 0;	
@@ -43,26 +47,26 @@ public class CasoEstado {
 				  usuario.setEmpresa("-1");
 			  }		  
 			  
-			  funcoesCadastro.cadastroCompleto(driver, usuario, "http://www.mundotigre.com.br/cadastro/new", i);
+			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
 			  if(funcoesCadastro.errosValidacao(driver)){
-				  System.out.println("------Erro de validação dos campos com o campo "+campo+": " + valorCampo);
+				  System.out.println("------Erro de validação dos campos com o campo "+nomeCampo+": " + valorCampo);
 			  }
 			  
 
 			  /* --------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {	
 				  
-				  funcoesCadastro.logCampoOK(driver, campo, valorCampo);
+				  funcoesCadastro.logCampoOK(driver, logger, nomeCampo, valorCampo);
 				  quantidadeAcertos++;
 
 				  	}else {				  
-						  funcoesCadastro.logCampoErro(driver, campo, valorCampo);
+						  funcoesCadastro.logCampoErro(driver, logger, nomeCampo, valorCampo);
 						  quantidadeErros++;		
 				  	}
 			  
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, campo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			  }
 		  
 			  interacoesNavegador.AguardarCarregamento(driver);  
