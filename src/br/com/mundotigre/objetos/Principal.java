@@ -6,8 +6,30 @@ import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoCEP;
 import br.com.mundotigre.funcoesprincipais.cadastro.CasoCPF;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoCidade;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoComplemento;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoConfirmaSenha;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoConfirmeEmail;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoDDD;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoDataNascimento;
 import br.com.mundotigre.funcoesprincipais.cadastro.CasoEmail;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoEmpresa;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoEndereco;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoEstado;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoNome;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoNovidades;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoNumero;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoProfissaoAtividade;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoProfissaoDetalhe;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoSenha;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoSexo;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoTelefone;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoTelefoneCelular;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoTempoAtuacao;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoTimeCoracao;
+import br.com.mundotigre.funcoesprincipais.cadastro.CasoTrabalhaEmpresa;
 import br.com.mundotigre.scripts.FuncoesCadastro;
 import br.com.mundotigre.scripts.FuncoesMT;
 import br.com.mundotigre.scripts.GravarExecucao;
@@ -39,15 +61,15 @@ public static long getSerialversionuid() {
 		interacoesNavegador = new InteracoesNavegador();
 		funcoesCadastro = new FuncoesCadastro();
 		funcoesMT = new FuncoesMT();
-		gravarExecucao = new GravarExecucao();
+		//gravarExecucao = new GravarExecucao();
 		
-		String link = "http://www.mundotigre.com.br/cadastro/new";	
+		String link = "http://extranet.a2c.com.br/karol_braga/tigre-mundotigre/web/cadastro/new";	
 		String email = funcoesMT.caracteresAleatorios();
 		String cpf = funcoesMT.numerosAleatorios();
 		
 		DOMConfigurator.configure("log4j.xml");
 		
-		gravarExecucao.iniciarGravacao(driver, logger);
+		//gravarExecucao.iniciarGravacao(driver, logger);
 		
 		
 //################################################################################################ INICIO DA EXECUCAO ###################################################################################//	
@@ -81,7 +103,7 @@ public static long getSerialversionuid() {
 		usuario.setConfirmaSenha("alif");	
 		
 //################################################################################################### TESTES DO CADASTRO #################################################################################//			
-		
+
 		CasoCPF casoCPF = new CasoCPF();	
 			
 		casoCPF.testarCPF(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);	
@@ -96,20 +118,20 @@ public static long getSerialversionuid() {
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email); 
+	
+	
+		CasoNome casoNome = new CasoNome();		
 		
-		
-		/*CasoNome casoNome = new CasoNome();		
-		
-		casoNome.testarNome(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);	
+		casoNome.testarNome(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);	
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
 		usuario.setNome("Teste");
-		
-		
+	
+	
 		CasoDataNascimento casoDataNascimento = new CasoDataNascimento();		
 		
-		casoDataNascimento.testarDataNascimento(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);	
+		casoDataNascimento.testarDataNascimento(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);	
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email); 
@@ -117,7 +139,7 @@ public static long getSerialversionuid() {
 		
 		CasoSexo casoSexo = new CasoSexo();		
 		
-		casoSexo.testarSexo(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoSexo.testarSexo(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -125,7 +147,7 @@ public static long getSerialversionuid() {
 		
 		CasoProfissaoAtividade casoProfissao = new CasoProfissaoAtividade();		
 
-		casoProfissao.testarProfissaoAtividade(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoProfissao.testarProfissaoAtividade(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email); 	
@@ -133,7 +155,7 @@ public static long getSerialversionuid() {
 		
 		CasoProfissaoDetalhe casoProfissaoDetalhe = new CasoProfissaoDetalhe();		
 		
-		casoProfissaoDetalhe.testarProfissaoDetalhe(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoProfissaoDetalhe.testarProfissaoDetalhe(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email); 
@@ -141,7 +163,7 @@ public static long getSerialversionuid() {
 		
 		CasoTempoAtuacao casoTempoAtuacao = new CasoTempoAtuacao();		
 		
-		casoTempoAtuacao.testarTempoAtuacao(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoTempoAtuacao.testarTempoAtuacao(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email); 
@@ -149,7 +171,7 @@ public static long getSerialversionuid() {
 		
 		CasoDDD casoDDD = new CasoDDD();
 		
-		casoDDD.testarDDD(driver, logger, usuario,  link, interacoesNavegador, funcoesCadastro);
+		casoDDD.testarDDD(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -157,7 +179,7 @@ public static long getSerialversionuid() {
 		
 		CasoTelefone casoTelefone = new CasoTelefone();
 		
-		casoTelefone.testarTelefone(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);	
+		casoTelefone.testarTelefone(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);	
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -165,7 +187,7 @@ public static long getSerialversionuid() {
 		
 		CasoTelefoneCelular casoTelefoneCelular = new CasoTelefoneCelular();
 		
-		casoTelefoneCelular.testarTelefoneCelular(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoTelefoneCelular.testarTelefoneCelular(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -173,7 +195,7 @@ public static long getSerialversionuid() {
 		
 		CasoCEP casoCEP = new CasoCEP();
 		
-		casoCEP.testarCEP(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoCEP.testarCEP(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -181,7 +203,7 @@ public static long getSerialversionuid() {
 		
 		CasoEndereco casoEndereco = new CasoEndereco();
 		
-		casoEndereco.testarEndereco(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoEndereco.testarEndereco(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -189,7 +211,7 @@ public static long getSerialversionuid() {
 		
 		CasoNumero casoNumero = new CasoNumero();
 		
-		casoNumero.testarNumero(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoNumero.testarNumero(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -197,7 +219,7 @@ public static long getSerialversionuid() {
 		
 		CasoComplemento casoComplemento = new CasoComplemento();
 		
-		casoComplemento.testarComplemento(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoComplemento.testarComplemento(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setNome("Teste");
@@ -206,7 +228,7 @@ public static long getSerialversionuid() {
 		
 		CasoEstado casoEstado = new CasoEstado();
 		
-		casoEstado.testarEstado(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoEstado.testarEstado(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -214,7 +236,7 @@ public static long getSerialversionuid() {
 		
 		CasoCidade casoCidade = new CasoCidade();
 		
-		casoCidade.testarCidade(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoCidade.testarCidade(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -222,7 +244,7 @@ public static long getSerialversionuid() {
 		
 		CasoEmpresa casoEmpresa = new CasoEmpresa();
 		
-		casoEmpresa.testarEmpresa(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoEmpresa.testarEmpresa(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
@@ -230,64 +252,64 @@ public static long getSerialversionuid() {
 		
 		CasoTrabalhaEmpresa casoTrabalhaEmpresa = new CasoTrabalhaEmpresa();
 		
-		casoTrabalhaEmpresa.testarTrabalhaEmpresa(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoTrabalhaEmpresa.testarTrabalhaEmpresa(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
 		
 		
-		#############################################################################################
+		/*#############################################################################################
 		CasoAtividadeFisicaPreferida casoAtividadeFisicaPreferida = new CasoAtividadeFisicaPreferida();
 		
-		casoAtividadeFisicaPreferida.testarAtividadeFisicaPreferida(driver, usuario, interacoesNavegador, funcoesCadastro);
+		casoAtividadeFisicaPreferida.testarAtividadeFisicaPreferida(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
-		###############################################################################################
+		###############################################################################################*/
 		
 		CasoTimeCoracao casoTimeCoracao = new CasoTimeCoracao();
-		casoTimeCoracao.testarTimeCoracao(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoTimeCoracao.testarTimeCoracao(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
 		
 		
 		CasoNovidades casoNovidades = new CasoNovidades();
-		casoNovidades.testarNovidades(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoNovidades.testarNovidades(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
 		
 		
-		#############################################################################################
+		/*#############################################################################################
 		CasoAreaDesejaReceberInfo casoAreaDesejaReceberInfo = new CasoAreaDesejaReceberInfo();
-		casoAreaDesejaReceberInfo.testarCasoAreaDesejaReceberInfo(driver, logger, usuario, interacoesNavegador, funcoesCadastro);
+		casoAreaDesejaReceberInfo.testarCasoAreaDesejaReceberInfo(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
-		###############################################################################################
+		###############################################################################################*/
 		
 		
 		CasoConfirmeEmail casoConfirmeEmail = new CasoConfirmeEmail();
-		casoConfirmeEmail.testarConfirmeEmail(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoConfirmeEmail.testarConfirmeEmail(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
 		
 		
 		CasoSenha casoSenha = new CasoSenha();
-		casoSenha.testarSenha(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoSenha.testarSenha(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
 		
 		
 		CasoConfirmaSenha casoConfirmaSenha = new CasoConfirmaSenha();
-		casoConfirmaSenha.testarConfirmaSenha(driver, logger, usuario, link, interacoesNavegador, funcoesCadastro);
+		casoConfirmaSenha.testarConfirmaSenha(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
-		*/
+	
 		
 		driver.close();
 		

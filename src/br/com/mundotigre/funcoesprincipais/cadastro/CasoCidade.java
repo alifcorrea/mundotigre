@@ -6,12 +6,13 @@ import org.openqa.selenium.WebDriver;
 
 import br.com.mundotigre.objetos.Usuario;
 import br.com.mundotigre.scripts.FuncoesCadastro;
+import br.com.mundotigre.scripts.FuncoesMT;
 import br.com.mundotigre.scripts.InteracoesNavegador;
 
 public class CasoCidade {
 	
 	 @Test 
-	 public void testarCidade(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
+	 public void testarCidade(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesMT funcoesMT, FuncoesCadastro funcoesCadastro){		 
 		
 		 long tempoInicio = System.currentTimeMillis();
 		 String nomeCampo = "Cidade";
@@ -52,18 +53,18 @@ public class CasoCidade {
 			  
 
 			  /* --------------------Impressao de log----------------------*/
-			  if(funcoesCadastro.cadastroRealizado(driver)) {	
+			if(funcoesCadastro.cadastroRealizado(driver)) {	
 				  
-				  funcoesCadastro.logCampoOK(driver, logger,  nomeCampo, valorCampo);
-					quantidadeAcertos++;
+				funcoesMT.logCampoOK(driver, logger,  nomeCampo, valorCampo);
+				quantidadeAcertos++;
 			
-				  	}else {				  
-						  funcoesCadastro.logCampoErro(driver, logger,  nomeCampo,  valorCampo);
-						  quantidadeErros++;		
-				  	}
+			}else {				  
+					funcoesMT.logCampoErro(driver, logger,  nomeCampo,  valorCampo);
+					quantidadeErros++;		
+				}
 			  
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, logger,  nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesMT.logInformacoesExecucao(driver, logger,  nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			  }
 		  
 			  interacoesNavegador.AguardarCarregamento(driver);  

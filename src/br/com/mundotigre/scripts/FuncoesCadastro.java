@@ -145,7 +145,6 @@ public class FuncoesCadastro {
 	  String email = funcoesMT.caracteresAleatorios()+contador+"@teste.com.br";
 	  String cpf = funcoesMT.numerosAleatorios();
 	  
-	  
 	  funcoes.abrirLink(driver, link);
 	  funcoes.AguardarCarregamento(driver);	
 	  
@@ -211,7 +210,10 @@ public class FuncoesCadastro {
 	  funcoes.clicarESetarPorID(driver, "cadastro-senha", usuario.getSenha());
 	  funcoes.clicarESetarPorID(driver, "cadastro-senha-confirme", usuario.getConfirmaSenha());	  
 	  funcoes.clicarCampoPorCssSelector(driver, ".submit");
-	
+	  
+	  System.out.println("------CPF: " + usuario.getCpf());
+	  System.out.println("------Email: " + usuario.getEmail());
+	  System.out.println("------Senha: " + usuario.getSenha());
 	  funcoes.AguardarCarregamento(driver);  
 	} 	
 }

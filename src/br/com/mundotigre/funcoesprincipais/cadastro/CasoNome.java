@@ -6,12 +6,13 @@ import org.openqa.selenium.WebDriver;
 
 import br.com.mundotigre.objetos.Usuario;
 import br.com.mundotigre.scripts.FuncoesCadastro;
+import br.com.mundotigre.scripts.FuncoesMT;
 import br.com.mundotigre.scripts.InteracoesNavegador;
 
 public class CasoNome {
 	
 	 @Test 
-	 public void testarNome(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesCadastro funcoesCadastro){		 
+	 public void testarNome(WebDriver driver, Logger logger, Usuario usuario, String link, InteracoesNavegador interacoesNavegador, FuncoesMT funcoesMT, FuncoesCadastro funcoesCadastro){		 
 		 
 		  long tempoInicio = System.currentTimeMillis(); 	
 		  
@@ -64,7 +65,7 @@ public class CasoNome {
 			
 			  funcoesCadastro.cadastroCompleto(driver, usuario, link, i);
 			  
-			  
+			 
 			  if(funcoesCadastro.errosValidacao(driver)){
 				  System.out.println("------Erro de validação dos campos com o nome: " + usuario.getNome());
 			  }
@@ -72,7 +73,7 @@ public class CasoNome {
 			  /*--------------------Impressao de log----------------------*/
 			  if(funcoesCadastro.cadastroRealizado(driver)) {	
 				  
-				  	funcoesCadastro.logCampoOK(driver, logger, nomeCampo, usuario.getNome());
+				  funcoesMT.logCampoOK(driver, logger, nomeCampo, usuario.getNome());
 					
 					 if(i <= 7) {
 						 quantidadeAcertos++;
@@ -81,7 +82,7 @@ public class CasoNome {
 					  		}
 		
 			  }else {				  
-				  	funcoesCadastro.logCampoErro(driver, logger, nomeCampo, usuario.getNome());	
+				  	funcoesMT.logCampoErro(driver, logger, nomeCampo, usuario.getNome());	
 				  	
 				    if(i <= 7) {							
 						quantidadeErros++;
@@ -91,7 +92,7 @@ public class CasoNome {
 			  }
 			  
 			  if(i==max){
-				  funcoesCadastro.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
+				  funcoesMT.logInformacoesExecucao(driver, logger, nomeCampo, quantidadeAcertos, quantidadeErros, acertosSemJS, errosSemJS, tempoInicio);
 			  }
 		  
 			i++;
