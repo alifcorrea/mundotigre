@@ -32,89 +32,89 @@ public class FuncoesMT {
 /*##################################################################################### RELATORIOS ######################################################################################################*/
 	
 	@Test
-	public void logInicio(WebDriver driver, Logger logger, String nomeCampo){
+	public void logInicio(WebDriver driver, Logger logger, String fieldName){
 
-		System.out.println("\n-----------------------------Teste "+nomeCampo+"-------------------------------");
+		System.out.println("\n-----------------------------Teste "+fieldName+"-------------------------------");
 		logger.info("--------------------------------------"
-					+ "------------------------------------Teste "+nomeCampo+"-------------------------------"
+					+ "------------------------------------Teste "+fieldName+"-------------------------------"
 					+ "--------------------------------------------------------------------------------------");
 	}
 	
 	
 	@Test
-	public void logCampoOK(WebDriver driver, Logger logger, String nomeCampo, String valorCampo){	
+	public void logCampoOK(WebDriver driver, Logger logger, String fieldName, String fieldValue){	
 		
-		System.out.println("Teste "+ nomeCampo +" [+Passou]: " + valorCampo);
-		logger.info("Teste "+ nomeCampo +" [+Passou]: " + valorCampo);
+		System.out.println("Teste "+ fieldName +" [+Passou]: " + fieldValue);
+		logger.info("Teste "+ fieldName +" [+Passou]: " + fieldValue);
 	}
 	
 	
 	@Test
-	public void logCampoErro(WebDriver driver, Logger logger, String nomeCampo, String valorCampo){
+	public void logCampoErro(WebDriver driver, Logger logger, String fieldName, String fieldValue){
 		
-		System.out.println("Teste "+ nomeCampo +" [-Não Passou]: " + valorCampo);
-		logger.info("Teste "+ nomeCampo +" [-Não Passou]: " + valorCampo);
+		System.out.println("Teste "+ fieldName +" [-Não Passou]: " + fieldValue);
+		logger.info("Teste "+ fieldName +" [-Não Passou]: " + fieldValue);
 	}
 	
 	
 	@Test
-	public void logInformacoesExecucao(WebDriver driver, Logger logger, String campo, int quantidadeAcertos, int quantidadeErros, int acertosSemJS, int errosSemJS, long tempoInicio){
+	public void logInformacoesExecucao(WebDriver driver, Logger logger, String field, int hits, int errors, int hitsWithJS, int errorsWithoutJS, long startTime){
 		
-		long tempoFim = System.currentTimeMillis(); 
+		long EndTime = System.currentTimeMillis(); 
 		
 		/*######################################### Imprimir no Console #####################################*/
-		System.out.println("\n-------------------------Resultados do teste de "+campo+"--------------------------\n"
-				+ "Total de vezes que enviou com Javascript habilitado: " + quantidadeAcertos + "\n"
-				+ "Total de vezes que não enviou com Javascript habilitado: " + quantidadeErros);
+		System.out.println("\n-------------------------Resultados do teste de "+field+"--------------------------\n"
+				+ "Total de vezes que enviou com Javascript habilitado: " + hits + "\n"
+				+ "Total de vezes que não enviou com Javascript habilitado: " + errors);
 		
 		
-		System.out.println("\nTotal de vezes que enviou com Javascript desabilitado: " + acertosSemJS + "\n"
-				+ "Total de vezes que não enviou com Javascript desabilitado: " + errosSemJS);
+		System.out.println("\nTotal de vezes que enviou com Javascript desabilitado: " + hitsWithJS + "\n"
+				+ "Total de vezes que não enviou com Javascript desabilitado: " + errorsWithoutJS);
 		
 		
-		int envios = quantidadeAcertos + acertosSemJS;
-		int naoEnvios = quantidadeErros + errosSemJS;
+		int submited = hits + hitsWithJS;
+		int notSubmited = errors + errorsWithoutJS;
 		
 		
-		System.out.println("\nTotal de vezes que enviou: " + envios + "\n"
-				+ "Total de vezes que não enviou: "	+ naoEnvios + "\n\n" 							
-				+ "Tempo total de execução: " + new SimpleDateFormat("mm:ss").format(new Date(tempoFim - tempoInicio))+"\n"	
+		System.out.println("\nTotal de vezes que enviou: " + submited + "\n"
+				+ "Total de vezes que não enviou: "	+ notSubmited + "\n\n" 							
+				+ "Tempo total de execução: " + new SimpleDateFormat("mm:ss").format(new Date(EndTime - startTime))+"\n"	
 				+ "----------------------------------------------------------------------------");
 		
 		
 		/*########################################### Imprimir no Log #######################################*/
 		logger.info("");
-		logger.info("------------------------------------------------------------------------------Resultados do teste de "+campo+"----------------------------------------------------------------------------------------------------------------------");
-		logger.info("Total de vezes que enviou com Javascript habilitado: " + quantidadeAcertos);
-		logger.info("Total de vezes que não enviou com Javascript habilitado: " + quantidadeErros);
+		logger.info("------------------------------------------------------------------------------Resultados do teste de "+field+"----------------------------------------------------------------------------------------------------------------------");
+		logger.info("Total de vezes que enviou com Javascript habilitado: " + hits);
+		logger.info("Total de vezes que não enviou com Javascript habilitado: " + errors);
 		
 		logger.info("");
 		
-		logger.info("Total de vezes que enviou com Javascript desabilitado: " + acertosSemJS);
-		logger.info("Total de vezes que não enviou com Javascript desabilitado: " + errosSemJS);
+		logger.info("Total de vezes que enviou com Javascript desabilitado: " + hitsWithJS);
+		logger.info("Total de vezes que não enviou com Javascript desabilitado: " + errorsWithoutJS);
 		
 		logger.info("");	
-		logger.info("Total de vezes que enviou: " + envios);
-		logger.info("Total de vezes que não enviou: "	+ naoEnvios);  	
+		logger.info("Total de vezes que enviou: " + submited);
+		logger.info("Total de vezes que não enviou: "	+ notSubmited);  	
 		
 		logger.info("");		
-		logger.info("Tempo total de execução: " + new SimpleDateFormat("mm:ss").format(new Date(tempoFim - tempoInicio)));
+		logger.info("Tempo total de execução: " + new SimpleDateFormat("mm:ss").format(new Date(EndTime - startTime)));
 		logger.info("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 	}	
 	
 	
 	@Test
-	public static void relatorioFinal(WebDriver driver, Logger logger, long tempoInicio){
+	public static void relatorioFinal(WebDriver driver, Logger logger, long startTime){
 		
-		long tempoFim = System.currentTimeMillis(); 		
+		long EndTime = System.currentTimeMillis(); 		
 		Date dataExecucao = GregorianCalendar.getInstance().getTime();  
         SimpleDateFormat format = new SimpleDateFormat();        
         
 		System.out.println("\nData da execução: "+ format.format(dataExecucao) +"\n"
-							+"Tempo total de execução de todos os testes: " + new SimpleDateFormat("mm:ss").format(new Date(tempoFim - tempoInicio))+"\n");		
+							+"Tempo total de execução de todos os testes: " + new SimpleDateFormat("mm:ss").format(new Date(EndTime - startTime))+"\n");		
 		
 		logger.info("Data da execução: "+ format.format(dataExecucao));
-		logger.info("Tempo total de execução de todos os testes: " + new SimpleDateFormat("mm:ss").format(new Date(tempoFim - tempoInicio)));
+		logger.info("Tempo total de execução de todos os testes: " + new SimpleDateFormat("mm:ss").format(new Date(EndTime - startTime)));
 		logger.info("####################################################################################################################################################################################################################");
 	}
 	
@@ -126,16 +126,16 @@ public class FuncoesMT {
 		
 		Random random = new Random();	
 		
-		String letras = "ABCDEFGHIJKLMNOPQRSTUVYWXZ";
-		String armazenaChaves = "";  
+		String string = "ABCDEFGHIJKLMNOPQRSTUVYWXZ";
+		String randomString = "";  
 		int index = -1;  
 	
 		for( int i = 0; i < 9; i++ ) {  
-		   index = random.nextInt( letras.length() );  
-		   armazenaChaves += letras.substring( index, index + 1 );  
+		   index = random.nextInt( string.length() );  
+		   randomString += string.substring( index, index + 1 );  
 		}  
 		
-		return armazenaChaves;
+		return randomString;
 	}
 	
 	
@@ -156,12 +156,12 @@ public class FuncoesMT {
 /*############################################################################### CONTAR ELEMENTOS #################################################################################################*/	
 	
 	@Test
-	public void contarElementosPorXpath(WebDriver driver, String valorCampo){
+	public void contarElementosPorXpath(WebDriver driver, String fieldValue){
 		
-		List<WebElement> listaDeElementos = driver.findElements(By.xpath(valorCampo));
+		List<WebElement> listOfElements = driver.findElements(By.xpath(fieldValue));
 		
-		int count = listaDeElementos.size();
+		int count = listOfElements.size();
 		
-		System.out.println("O campo "+ valorCampo +" contém "+ count +" elementos");
+		System.out.println("O campo "+ fieldValue +" contém "+ count +" elementos");
 	}
 }

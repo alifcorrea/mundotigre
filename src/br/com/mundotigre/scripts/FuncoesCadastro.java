@@ -137,12 +137,12 @@ public class FuncoesCadastro {
 /*###################################################################################### DADOS CADASTRO ################################################################################################*/	
 	
 	@Test
-	public void cadastroCompleto(WebDriver driver, Usuario usuario, String link, int contador){		
+	public void cadastroCompleto(WebDriver driver, Usuario usuario, String link, int counter){		
 			  
 	  InteracoesNavegador funcoes = new InteracoesNavegador();
 	  FuncoesMT funcoesMT = new FuncoesMT();
 
-	  String email = funcoesMT.caracteresAleatorios()+contador+"@teste.com.br";
+	  String email = funcoesMT.caracteresAleatorios()+counter+"@teste.com.br";
 	  String cpf = funcoesMT.numerosAleatorios();
 	  
 	  funcoes.abrirLink(driver, link);

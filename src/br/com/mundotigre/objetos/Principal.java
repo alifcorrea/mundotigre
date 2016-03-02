@@ -50,7 +50,6 @@ public static long getSerialversionuid() {
 	return serialVersionUID;
 }
 
-
 //############################################################################################## CONFIGURACOES INICIAIS #################################################################################//
 		
 	public static void main(String[] args) throws Exception{		
@@ -62,10 +61,12 @@ public static long getSerialversionuid() {
 		funcoesCadastro = new FuncoesCadastro();
 		funcoesMT = new FuncoesMT();
 		//gravarExecucao = new GravarExecucao();
-		
-		String link = "http://extranet.a2c.com.br/karol_braga/tigre-mundotigre/web/cadastro/new";	
+
 		String email = funcoesMT.caracteresAleatorios();
 		String cpf = funcoesMT.numerosAleatorios();
+		
+		interacoesNavegador.abrirLink(driver, "http://extranet.a2c.com.br/karol_braga/tigre-mundotigre/web/cadastro/new");
+		interacoesNavegador.AguardarCarregamento(driver);
 		
 		DOMConfigurator.configure("log4j.xml");
 		
@@ -135,16 +136,16 @@ public static long getSerialversionuid() {
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email); 
-		
-		
+	
+	
 		CasoSexo casoSexo = new CasoSexo();		
 		
 		casoSexo.testarSexo(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
 		usuario.setCpf(cpf); 
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
-		
-		
+	
+	
 		CasoProfissaoAtividade casoProfissao = new CasoProfissaoAtividade();		
 
 		casoProfissao.testarProfissaoAtividade(driver, logger, usuario, link, interacoesNavegador, funcoesMT, funcoesCadastro);
@@ -310,7 +311,6 @@ public static long getSerialversionuid() {
 		usuario.setEmail(email); 
 		usuario.setConfirmaEmail(email);
 	
-		
 		driver.close();
 		
 		FuncoesMT.relatorioFinal(driver, logger, tempoInicio);

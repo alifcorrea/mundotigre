@@ -108,9 +108,6 @@ public class CasoCPF {
 			
 			try{
 				
-				interacoesNavegador.abrirLink(driver, link);
-				interacoesNavegador.AguardarCarregamento(driver);
-				
 				interacoesNavegador.clicarESetarPorID(driver, "login-cpf", cpf);
 				interacoesNavegador.clicarESetarPorID(driver, "login-senha", email);
 				interacoesNavegador.clicarCampoPorXpath(driver, "//*[@value='Cadastrar']");
